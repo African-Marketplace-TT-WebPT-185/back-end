@@ -1,13 +1,13 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('items').truncate()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('items').insert([
+        {item_name: 'banana', location: 'Ghana', description: 'Yellow Fruit!', price: '$5', user_id: 1 },
+        {item_name: 'plum', location: 'Ghana', description: 'Purple Fruit!', price: '$10', user_id: 1 },
+        {item_name: 'apple', location: 'Ghana', description: 'Red Fruit!', price: '$7', user_id: 1 }
       ]);
     });
 };
