@@ -14,8 +14,8 @@ exports.seed = function(knex) {
 
 //need to make knex migrations, review schema
 // next steps
-//1. create routes and model files
-//2. test to make sure it works
+//1. create routes and model files (done)
+//2. test to make sure it works (done)
 //3. deploy to heroku
 //4. send off endpoints and data to front end
 //5. write tests

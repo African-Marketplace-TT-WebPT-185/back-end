@@ -36,6 +36,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+
 // router.options('/:id', cors());
 
 router.put('/:id', auth, checkRoleMiddleware(owner), (req, res) => {
