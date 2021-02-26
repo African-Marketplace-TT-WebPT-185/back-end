@@ -1,8 +1,8 @@
 const express = require('express');
 const helmet = require('helmet')
 
-const UserRouter = require('./users/users-router.js')
-const ItemsRouter = require('./users/users-router.js')
+const UsersRouter = require('../users/user-router.js')
+const ItemsRouter = require('../items/items-router.js')
 
 const server = express();
 
