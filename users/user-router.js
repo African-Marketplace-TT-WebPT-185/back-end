@@ -10,13 +10,13 @@ const checkRoleMiddleware = require('../auth/check-role-middleware.js');
 
 const router = express.Router();
 
-const owner = 'Owner';
+const owner = 'owner';
 
 //registering users
 router.post('/register', validateUser, (req, res) => {
     const user = req.body;
 
-    const hash = bcryptjs.hashSync(user.password, 12);
+    const hash = bcryptjs.hashSync(user.password, 10);
     user.password = hash
 
     try {
@@ -56,18 +56,18 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/:id/items', auth, checkRoleMiddleware(owner), (req, res) => {
-    const itemInfo = {...req.body, user_id: req.params.id};
+// router.post('/', auth, checkRoleMiddleware(owner), (req, res) => {
+//     const itemInfo = {...req.body, user_id: req.params.id};
 
-    Items.add(itemInfo)
-    .then(post => {
-        res.status(201).json(post[0]);
-    })
-    .catch(error => {
-        console.log(error);
-        res.status(500).json({ message: 'Error sending the post info', error: error.message });
-    });
-});
+//     Items.add(itemInfo)
+//     .then(post => {
+//         res.status(201).json(post[0]);
+//     })
+//     .catch(error => {
+//         console.log(error);
+//         res.status(500).json({ message: 'Error sending the post info', error: error.message });
+//     });
+// });
 
 function generateToken(user) {
     const payload = {
@@ -97,3 +97,5 @@ function validateUser(req, res, next) {
 };
 
 module.exports = router;
+
+

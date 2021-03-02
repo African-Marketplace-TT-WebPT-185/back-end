@@ -5,7 +5,9 @@ function checkRoleMiddleware(role) {
         if (req.decodedToken.role && req.decodedToken.role === role) {
             next();
         } else {
-            res.status(403).json({ message: 'No permissions!' });
+
+            res.status(403).json({ message: 'No permissions!', role });
+
         }
     }
 }
