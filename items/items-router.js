@@ -1,13 +1,13 @@
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 
 const Items = require('./items-model.js');
-const auth = require('../auth/auth-middleware.js'); //need to write
-const checkRoleMiddleware = require('../auth/check-role-middleware.js'); // need to write
+const auth = require('../auth/auth-middleware.js'); 
+const checkRoleMiddleware = require('../auth/check-role-middleware.js'); 
 
 const router = express.Router();
 
-const owner  = 'Owner'
+const owner  = 'owner'
 
 
 router.get('/', (req, res) => {
@@ -36,8 +36,20 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/', auth, checkRoleMiddleware(owner), (req, res) => {
+    const itemInfo = {...req.body, user_id: req.params.id};
 
-// router.options('/:id', cors());
+    Items.add(itemInfo)
+    .then(post => {
+        res.status(201).json(post[0]);
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).json({ message: 'Error sending the post info', error: error.message });
+    });
+});
+
+router.options('/:id', cors());
 
 router.put('/:id', auth, checkRoleMiddleware(owner), (req, res) => {
     delete req.body.username
