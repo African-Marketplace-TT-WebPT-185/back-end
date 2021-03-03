@@ -20,8 +20,8 @@ server.use(function (req, res, next) {
     next();
 })
 
-server.use('/api/users', UsersRouter);
-server.use('/api/items', ItemsRouter);
+server.use('/users', UsersRouter);
+server.use('/items', ItemsRouter);
 
 
 server.get('/', (req,res) => {
