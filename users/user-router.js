@@ -4,13 +4,10 @@ const jwt = require('jsonwebtoken');
 const secrets = require('../config/secrets.js')
 
 const Users = require('./user-model.js');
-const Items = require('../items/items-model.js'); 
-const auth = require('../auth/auth-middleware.js'); 
-const checkRoleMiddleware = require('../auth/check-role-middleware.js'); 
 
 const router = express.Router();
 
-const owner = 'owner';
+
 
 //registering users
 router.post('/register', validateUser, (req, res) => {
